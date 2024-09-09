@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/Screens/Auth/Auth_screen/Auth_Screen.dart';
-import 'package:tiktok_clone/Theme/Themes.dart';
-import 'package:tiktok_clone/const/constColors.dart';
 import 'package:tiktok_clone/controllers/Theme_Controller.dart';
 import 'package:tiktok_clone/firebase_options.dart';
 

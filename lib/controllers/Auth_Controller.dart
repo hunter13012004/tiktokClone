@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tiktok_clone/Models/UserModel.dart';
 import 'package:tiktok_clone/Screens/Auth/Login_Screen.dart';
 import 'package:tiktok_clone/Screens/Home/Home_Screen.dart';
@@ -92,6 +93,18 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
+  }
+
+  Future LoginInWithGoogle() async {
+    final GoogleSignInAccount? googleuser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication googleauth =
+        await googleuser!.authentication;
+    final AuthCredential googlecreds = GoogleAuthProvider.credential(
+        accessToken: googleauth.accessToken, idToken: googleauth.idToken);
+    final UserCredential creds = await _auth.signInWithCredential(googlecreds);
+    Get.to(() => HomeScreen());
+    return creds.user;
   }
 
   Future LogUserOut() async {

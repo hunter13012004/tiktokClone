@@ -27,6 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image.asset(
+                'assets/tiktok.png',
+                height: 100.h,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'TIKTOK',
                 style: headingStyle,
@@ -55,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     authcontroller.loginUserWithEmailAndPassword();
                   }),
               SizedBox(
-                height: 100.h,
+                height: 20.h,
               ),
               RichText(
                 text: TextSpan(
@@ -63,12 +70,48 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextSpan(text: 'Don\'t have an Account? '),
                     TextSpan(
                         text: 'Sign up',
+                        style: TextStyle(color: Colors.red),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Get.to(() => SignupScreen());
                           })
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Text('Or'),
+                  ),
+                  Expanded(child: Divider())
+                ],
+              ),
+              SizedBox(
+                height: 50.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () => authcontroller.LoginInWithGoogle(),
+                    child: Container(
+                      height: 100.h,
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Image.asset(
+                        'assets/google.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
